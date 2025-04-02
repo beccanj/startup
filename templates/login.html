@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block title %}
+    <title>Login</title>
+{% endblock %}
+
+
+{% block content %}
+    <section class="hero-section section-padding d-flex flex-column justify-content-center align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <div class="card shadow-lg p-5 border-0">
+
+                        <!-- Persuasive Heading -->
+                        <h2 class="text-center text-success fw-bold" style="font-size: 2.5rem;">
+                            Log In
+                        </h2>
+
+                        <p class="text-center text-muted" style="font-size: 0.9rem;">
+                            Welcome back!
+                        </p>
+
+
+                        <!-- Sense of Urgency -->
+
+
+                        <!-- Payment Form -->
+                        <form method="post" class="custom-form">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <div class="text-center w-100">
+                                <button type="submit"
+                                        class="btn btn custom-btn custom-border-btn justify-content-center">
+                                    Log In
+                                </button>
+                            </div>
+
+                        </form>
+
+
+                        <!-- Trust Signals -->
+                        <div class="text-center mt-2" >
+
+                            <p style="font-size: 0.9rem;" class="mt-2">Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p></div>
+
+                        {#                        <!-- Money-Back Guarantee -->#}
+                        {#                        <p class="text-center text-muted small mt-5">#}
+                        {#                            💡 <strong>Not satisfied?</strong> Get a full refund within 7 days!#}
+                        {#                        </p>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

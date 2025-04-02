@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block title %}
+    <title>Login</title>
+{% endblock %}
+
+
+{% block content %}
+    <section class="hero-section section-padding d-flex flex-column justify-content-center align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <div class="card shadow-lg p-5 border-0">
+
+                        <!-- Persuasive Heading -->
+                        <h2 class="text-center text-success fw-bold" style="font-size: 2.5rem;">
+                            Payment Successful!
+                        </h2>
+
+                        
+
+
+                        
+
+
+                        <!-- Payment Success -->
+                       
+                            <div class="text-center w-100">
+                                <p>Thank you for your payment! 🎉</p>
+                                <p>We have received your request for soil testing. You will receive an email shortly
+                                    with the next steps.</p>
+                                <p>If you have any questions, feel free to contact our support team.</p>
+
+                                <a href="{% url 'home' %}#services">Return to Home</a>
+                            </div>
+
+                      
+
+
+                        
+
+                        {#                        <!-- Money-Back Guarantee -->#}
+                        {#                        <p class="text-center text-muted small mt-5">#}
+                        {#                            💡 <strong>Not satisfied?</strong> Get a full refund within 7 days!#}
+                        {#                        </p>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Course 01 - Fundamentals of Agroecology</title>
+{% endblock %}
+
+{% block content %}
+    <header class="site-header d-flex flex-column justify-content-center align-items-center">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-5 col-12 mb-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Homepage</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Fundamentals of Agroecology</li>
+                        </ol>
+                    </nav>
+
+                    <h2 class="text-white">Fundamentals of <br> Agroecology</h2>
+
+                    <!-- Course Details (Small Text) -->
+                    <p class="text-white small mt-3">
+                        <strong>Duration:</strong> 2 Hours &nbsp; | &nbsp;
+                        <strong>Price:</strong> $150 &nbsp; | &nbsp;
+                        <strong>Trainer:</strong> Irene Kalondu
+                    </p>
+
+                    <div class="d-flex align-items-center mt-4">
+                        <a href="#topics-detail" class="btn custom-btn smoothscroll me-4">Read More</a>
+                        <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-12">
+                    <div class="topics-detail-block bg-white shadow-lg">
+                        <img src="{% static 'images/course-1.png' %}" class="topics-detail-block-image img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <!-- Flash Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show flash" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <section class="topics-detail-section section-padding" id="topics-detail">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-8 col-12 m-auto">
+                    <h3 class="mb-4">Fundamentals of Agroecology</h3>
+
+
+                    <div>
+                        <img src="{% static 'images/course-1.png' %}" class="topics-detail-block-image img-fluid">
+                    </div>
+                    <br>
+                    <p>There are 13 principles of Agroecology:</p>
+                    <p>
+                    <ul>
+                        <li><strong>Biodiversity:</strong> Maintain and increase the variety of species, genetic
+                            resources, and functional diversity.
+                        </li>
+                        <li><strong>Soil Health:</strong> Improve soil health and functioning to support plant growth.
+                        </li>
+                        <li><strong>Input Reduction:</strong> Reduce or eliminate reliance on purchased inputs.</li>
+                        <li><strong>Economic Diversification:</strong> Increase financial independence and value
+                            addition opportunities for small-scale farmers.
+                        </li>
+                        <li><strong>Recycling:</strong> Recycle nutrients through composting and other natural methods.
+                        </li>
+                        <li><strong>Participation:</strong> Encourage others to get involved and provide input on how
+                            agricultural and food systems are managed.
+                        </li>
+                        <li><strong>Synergy:</strong> Enhance positive ecological interactions between elements.</li>
+                        <li><strong>Animal Health:</strong> Ensure animal health and welfare.</li>
+                        <li><strong>Co-Creation of Knowledge:</strong> Create knowledge together.</li>
+                        <li><strong>Social Values and Diets:</strong> Consider social values and diets.</li>
+                        <li><strong>Fairness:</strong> Promote fairness.</li>
+                        <li><strong>Connectivity:</strong> Promote connectivity.</li>
+                        <li><strong>Land and Natural Resource Governance:</strong> Manage land and natural resources
+                            responsibly.
+                        </li>
+                    </ul>
+
+                    <div class="mt-3">
+                        <a href="{% url 'payment_form' %}" class="btn custom-btn custom-border-btn">Continue Reading</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section-padding section-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-lg-5 col-12">
+                    <img src="
+                    {% static 'images/rear-view-young-college-student.jpg' %}" class="newsletter-image img-fluid"
+                         alt="">
+                </div>
+
+                <div class="col-lg-5 col-12 subscribe-form-wrap d-flex justify-content-center align-items-center">
+                    <form class="custom-form subscribe-form" action="#" method="post" role="form">
+                        <h4 class="mb-4 pb-2">Get Newsletter</h4>
+
+                        <input type="email" name="subscribe-email" id="subscribe-email" pattern="[^ @]*@[^ @]*"
+                               class="form-control" placeholder="Email Address" required="">
+
+                        <div class="col-lg-12 col-12">
+                            <button type="submit" class="form-control">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
