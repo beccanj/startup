@@ -14,25 +14,28 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
 
 from main import views
-from main.views import signup, login, logout, farmerlogin, farmerlogout
+from main.views import signup, login, logout, farmerlogin, farmerlogout, courseone
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('fundamentalsodagroecology', views.courseone, name='courseone'),
-    path('payment', views.payment_page, name='payment_form'),
-    path('contact', views.contact, name='contact'),
-    path("services_payment/", views.services_payment, name="services_payment"),
-    path("payment_success/", views.payment_success, name="payment_success"),  # Success page
+                  path('', views.home, name='home'),
+                  path('fundamentalsodagroecology', views.courseone, name='courseone'),
+                  path('payment', views.payment_page, name='payment_form'),
+                  path('contact', views.contact, name='contact'),
+                  path("services_payment/", views.services_payment, name="services_payment"),
+                  path("payment_success/", views.payment_success, name="payment_success"),  # Success page
+                  path('article/<int:pk>/', views.article_detail, name='article_detail'),
 
-    path('admin/', admin.site.urls),
-    path('signup/', signup, name='signup'),
-    path('login/', farmerlogin, name='login'),
-    path('logout/', farmerlogout, name='logout'),
+                  path('admin/', admin.site.urls),
+                  path('signup/', signup, name='signup'),
+                  path('login/', farmerlogin, name='login'),
+                  path('logout/', farmerlogout, name='logout'),
 
-    path('trigger', views.trigger, name='trigger'),
-    path('callback', views.callback, name='logout'),
-]
+                  path('trigger', views.trigger, name='trigger'),
+                  path('callback', views.callback, name='logout'),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

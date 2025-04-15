@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'crispy_forms',
     'crispy_bootstrap5',
-    'django_daraja'
+    'django_daraja',
+    'ckeditor'
 
 
 ]

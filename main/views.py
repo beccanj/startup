@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django_daraja.mpesa.core import MpesaClient
 
 from main.forms import PaymentForm, SoilTestForm
-from main.models import Course
+from main.models import Course, Article
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
@@ -19,11 +19,26 @@ from .forms import FarmerSignUpForm
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+    crops = Article.objects.filter(category='Crops')
+    livestock = Article.objects.filter(category='Livestock')
+    soil = Article.objects.filter(category='Soil')
+    pests = Article.objects.filter(category='Pests')
+    smart_agri = Article.objects.filter(category='SmartAgri')
+
+    context = {
+        'crops': crops,
+        'livestock': livestock,
+        'soil': soil,
+        'pests': pests,
+        'smart_agri': smart_agri,
+    }
+
+    return render(request, 'home.html', context)
 
 
 @login_required
 def courseone(request):
+
     return render(request, 'courseone.html')
 
 
@@ -155,3 +170,7 @@ def services_payment(request):
 
 def payment_success(request):
     return render(request, "payment_success.html")
+
+def article_detail(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    return render(request, 'article_detail.html', {'article': article})

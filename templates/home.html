@@ -42,7 +42,7 @@
 
                 <div class="col-lg-4 col-12 mb-4 mb-lg-0">
                     <div class="custom-block bg-white shadow-lg">
-                        <a href="{% url 'courseone' %}">
+                        <a href="{% url 'article_detail' pk=9 %}">
                             <div class="d-flex">
                                 <div>
                                     <h5 class="mb-2">Fundamentals of Agroecology</h5>
@@ -118,9 +118,9 @@
             <div class="row">
 
                 <div class="col-12">
-                    <div  id="myTabContent">
-                        <div 
-                             aria-labelledby="design-tab" tabindex="0">
+                    <div id="myTabContent">
+                        <div
+                                aria-labelledby="design-tab" tabindex="0">
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                                     <div class="custom-block bg-white shadow-lg">
@@ -148,7 +148,7 @@
                                                 <div>
                                                     <h5 class="mb-2">Moisture Analysis</h5>
 
-                                                    <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                    <p class="mb-0">How moist is your soil? Test now with Agricol!</p>
                                                 </div>
 
 
@@ -251,25 +251,35 @@
                         <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel"
                              aria-labelledby="design-tab" tabindex="0">
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <a href="{% url 'courseone' %}">
-                                            <div class="d-flex">
-                                                <div>
-                                                    <h5 class="mb-2">Fundamentals of Agroecology</h5>
+                                {% for article in crops %}
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'article_detail' article.id %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">{{ article.title }}</h5>
 
-                                                    <p class="mb-0">Learn Agroecology Principles, Methodologies</p>
+                                                        <p class="mb-0">{{ article.description }}</p>
+                                                    </div>
+
+                                                    <span class="badge bg-design rounded-pill ms-auto">01</span>
                                                 </div>
+                                                {% if article.image %}
 
-                                                <span class="badge bg-design rounded-pill ms-auto">01</span>
-                                            </div>
+                                                    <img src="{{ article.image.url }}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                {% else %}
+                                                    <img src="https://via.placeholder.com/400x250" class="card-img-top"
+                                                         alt="No Image">
+                                                {% endif %}
 
-                                            <img src="{% static 'images/course-1.png' %}"
-                                                 class="custom-block-image img-fluid" alt="">
-                                        </a>
+
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-
+                                {% empty %}
+                                    <p>No articles in this category.</p>
+                                {% endfor %}
 
                             </div>
                         </div>
@@ -277,26 +287,34 @@
                         <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel"
                              aria-labelledby="marketing-tab" tabindex="0">
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <a href="#">
-                                            <div class="d-flex">
-                                                <div>
-                                                    <h5 class="mb-2">Livestock Keeping</h5>
+                                {% for article in livestock %}
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'article_detail' article.id %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">{{ article.title }}</h5>
 
-                                                    <p class="mb-0">Explore the future of livestock farming with
-                                                        NatGeo</p>
+                                                        <p class="mb-0">{{ article.description }}</p>
+                                                    </div>
+
+                                                    <span class="badge bg-advertising rounded-pill ms-auto">02</span>
                                                 </div>
 
-                                                <span class="badge bg-advertising rounded-pill ms-auto">02</span>
-                                            </div>
+                                                {% if article.image %}
 
-                                            <img src="{% static 'images/course-5.png' %}"
-                                                 class="custom-block-image img-fluid" alt="">
-                                        </a>
+                                                    <img src="{{ article.image.url }}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                {% else %}
+                                                    <img src="https://via.placeholder.com/400x250" class="card-img-top"
+                                                         alt="No Image">
+                                                {% endif %}
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-
+                                {% empty %}
+                                    <p>No articles in this category.</p>
+                                {% endfor %}
 
                             </div>
                         </div>
@@ -304,26 +322,34 @@
                         <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel"
                              aria-labelledby="finance-tab" tabindex="0">
                             <div class="row">
-                                <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-0">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <a href="#">
-                                            <div class="d-flex">
-                                                <div>
-                                                    <h5 class="mb-2">Plant-based Pest Control</h5>
+                                {% for article in soil %}
+                                    <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-0">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'article_detail' article.id %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">{{ article.title }}</h5>
 
-                                                    <p class="mb-0">Pests in the farm and the various plant extracts
-                                                        used to manage them</p>
+                                                        <p class="mb-0">{{ article.description }}</p>
+                                                    </div>
+
+                                                    <span class="badge bg-finance rounded-pill ms-auto">03</span>
                                                 </div>
 
-                                                <span class="badge bg-finance rounded-pill ms-auto">03</span>
-                                            </div>
+                                                {% if article.image %}
 
-                                            <img src="{% static 'images/course-2.jpg' %}"
-                                                 class="custom-block-image img-fluid" alt="">
-                                        </a>
+                                                    <img src="{{ article.image.url }}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                {% else %}
+                                                    <img src="https://via.placeholder.com/400x250" class="card-img-top"
+                                                         alt="No Image">
+                                                {% endif %}
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-
+                                {% empty %}
+                                    <p>No articles in this category.</p>
+                                {% endfor %}
 
                             </div>
                         </div>
@@ -331,46 +357,54 @@
                         <div class="tab-pane fade" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab"
                              tabindex="0">
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <a href="#">
-                                            <div class="d-flex">
-                                                <div>
-                                                    <h5 class="mb-2">Plant-based Pest Control</h5>
+                                {% for article in pests %}
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'article_detail' article.id %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">{{ article.title }}</h5>
 
-                                                    <p class="mb-0">Pests in the farm and the various plant extracts
-                                                        used to manage them</p>
+                                                        <p class="mb-0">{{ article.description }}</p>
+                                                    </div>
+
+                                                    <span class="badge bg-music rounded-pill ms-auto">04</span>
                                                 </div>
 
-                                                <span class="badge bg-music rounded-pill ms-auto">04</span>
-                                            </div>
+                                                {% if article.image %}
 
-                                            <img src="{% static 'images/course-2.jpg' %}"
-                                                 class="custom-block-image img-fluid" alt="">
-                                        </a>
+                                                    <img src="{{ article.image.url }}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                {% else %}
+                                                    <img src="https://via.placeholder.com/400x250" class="card-img-top"
+                                                         alt="No Image">
+                                                {% endif %}
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <a href="#">
-                                            <div class="d-flex">
-                                                <div>
-                                                    <h5 class="mb-2">Bio-Pesticide Mastery for Organic Farmers</h5>
-
-                                                    <p class="mb-0">Gain knowledge and skills on making bio
-                                                        pesticides.</p>
-                                                </div>
-
-                                                <span class="badge bg-music rounded-pill ms-auto">05</span>
-                                            </div>
-
-                                            <img src="{% static 'images/course-3.jpg' %}"
-                                                 class="custom-block-image img-fluid" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-
+                                    {#                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">#}
+                                    {#                                        <div class="custom-block bg-white shadow-lg">#}
+                                    {#                                            <a href="#">#}
+                                    {#                                                <div class="d-flex">#}
+                                    {#                                                    <div>#}
+                                    {#                                                        <h5 class="mb-2">Bio-Pesticide Mastery for Organic Farmers</h5>#}
+                                    {##}
+                                    {#                                                        <p class="mb-0">Gain knowledge and skills on making bio#}
+                                    {#                                                            pesticides.</p>#}
+                                    {#                                                    </div>#}
+                                    {##}
+                                    {#                                                    <span class="badge bg-music rounded-pill ms-auto">05</span>#}
+                                    {#                                                </div>#}
+                                    {##}
+                                    {#                                                <img src="{% static 'images/course-3.jpg' %}"#}
+                                    {#                                                     class="custom-block-image img-fluid" alt="">#}
+                                    {#                                            </a>#}
+                                    {#                                        </div>#}
+                                    {#                                    </div>#}
+                                {% empty %}
+                                    <p>No articles in this category.</p>
+                                {% endfor %}
 
                             </div>
                         </div>
@@ -378,24 +412,34 @@
                         <div class="tab-pane fade" id="education-tab-pane" role="tabpanel"
                              aria-labelledby="education-tab" tabindex="0">
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <a href="#">
-                                            <div class="d-flex">
-                                                <div>
-                                                    <h5 class="mb-2">Farmer's Resource Guide</h5>
+                                {% for article in smart_agri %}
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="{% url 'article_detail' article.id %}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">{{ article.title }}</h5>
 
-                                                    <p class="mb-0">Achieving production without Toxic Pesticides</p>
+                                                        <p class="mb-0">{{ article.description }}</p>
+                                                    </div>
+
+                                                    <span class="badge bg-music rounded-pill ms-auto">06</span>
                                                 </div>
 
-                                                <span class="badge bg-music rounded-pill ms-auto">06</span>
-                                            </div>
+                                                {% if article.image %}
 
-                                            <img src="{% static 'images/course-4.jpg' %}"
-                                                 class="custom-block-image img-fluid" alt="">
-                                        </a>
+                                                    <img src="{{ article.image.url }}"
+                                                         class="custom-block-image img-fluid" alt="">
+                                                {% else %}
+                                                    <img src="https://via.placeholder.com/400x250" class="custom-block-image img-fluid"
+                                                         alt="No Image">
+                                                {% endif %}
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
+                                {% empty %}
+                                    <p>No articles in this category.</p>
+                                {% endfor %}
 
 
                             </div>
@@ -496,7 +540,7 @@
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    What is Agricoll?
+                                    What is Agricol?
                                 </button>
                             </h2>
 
@@ -584,7 +628,7 @@
                         <span class="me-2">Email</span>
 
                         <a href="mailto:info@company.com" class="site-footer-link">
-                            info@agricoll.com
+                            info@agricol.com
                         </a>
                     </p>
                 </div>
