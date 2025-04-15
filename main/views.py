@@ -17,7 +17,7 @@ from .forms import FarmerSignUpForm
 
 
 # Create your views here.
-
+@login_required
 def home(request):
     crops = Article.objects.filter(category='Crops')
     livestock = Article.objects.filter(category='Livestock')
