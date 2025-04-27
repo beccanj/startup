@@ -30,7 +30,7 @@ class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = RichTextField(blank=True, null=True)
     image = models.ImageField(upload_to='article_images/', blank=True, null=True)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, null=True)
     practice = models.ForeignKey(Practice, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

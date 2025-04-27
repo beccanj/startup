@@ -19,7 +19,7 @@ class Practice(BaseModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='practices')
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
-    list_of_stages = models.JsonField(default=list)
+    list_of_stages = models.JSONField(default=list)
     soil_test_valid_duration = models.IntegerField(null=True)
 
     def __str__(self):
@@ -48,15 +48,15 @@ class UserPractice(BaseModel):
 class SoilTest(BaseModel):
     user_practice = models.ForeignKey(UserPractice, on_delete=models.CASCADE, related_name='tests')
     farm = models.ForeignKey(Farm, on_delete=models.CASCADE, related_name='tests')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='soil_tests')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tests')
     document = models.FileField(upload_to='soil_tests/', null=True, blank=True)
     next_soil_test = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=50, choices=SoilTestStatus.choices)
 
 
 class Subscription(BaseModel):
-    soil_test = models.ForeignKey(SoilTest, on_delete=models.SET_NULL, null=True, blank=True)
-    blog = models.ForeignKey('main.Article', on_delete=models.SET_NULL, null=True, blank=True)
+    soil_test = models.ForeignKey(SoilTest, on_delete=models.SET_NULL, null=True, blank=True, related_name='tests')
+    blog = models.ForeignKey('main.Article', on_delete=models.SET_NULL, null=True, blank=True, related_name='subscriptions')
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=50, choices=SubscriptionStatus.choices)
